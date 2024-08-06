@@ -532,8 +532,31 @@ install_rclocal() {
 		# bits.
 		#
 		# By default this script does nothing.
+		sudo chmod +x /boot/scripts/*
+		/boot/scripts/btt_init.sh
 
 		exit 0
 	EOF
 	chmod +x "${SDCARD}"/etc/rc.local
+}
+install_btt_scripts(){
+	cp $USERPATCHES_PATH/boot/system.cfg                              $SDCARD/boot/system.cfg
+	sudo mkdir -p $SDCARD/usr/service
+    chmod +x "${SDCARD}"/boot/system.cfg
+	sudo rm -rf $SDCARD/boot/scripts/profile
+	sudo cp -rf $USERPATCHES_PATH/boot/scripts				          $SDCARD/boot/
+	sudo cp -rf $USERPATCHES_PATH/boot/scripts/profile      		  $SDCARD/etc
+	sudo cp -rf $USERPATCHES_PATH/boot/60-persistent-v4l.rules        $SDCARD/lib/udev/rules.d 
+	sudo cp -rf $USERPATCHES_PATH/boot/60-persistent-v4l.rules        $SDCARD/usr/lib/udev/rules.d
+	sudo cp -rf $USERPATCHES_PATH/boot/60-persistent-v4l.rules        $SDCARD/usr/service
+	sudo mkdir -p $SDCARD/usr/share/X11/xorg.conf.d
+	
+
+	sudo rm -rf $SDCARD/usr/share/doc/pulseaudio
+	sudo rm -rf $SDCARD/usr/share/lintian/overrides/pulseaudio
+	sudo rm -rf $SDCARD/usr/share/bash-completion/completions/pulseaudio
+	sudo rm -rf $SDCARD/usr/share/pulseaudio
+	sudo rm -rf $SDCARD/usr/share/bug/pulseaudio
+
+	
 }
