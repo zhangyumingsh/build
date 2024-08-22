@@ -29,7 +29,7 @@ grep -e "^ks_src" ${SYSTEM_CFG_PATH} > /dev/null
 STATUS=$?
 if [ ${STATUS} -eq 0 ] && [ ${ks_src} == "TFT35" ]; then
     tft35=1
-	insmod /usr/lib/modules/6.1.43-bigtree-cb2/kernel/drivers/input/touchscreen/tsc2007.ko
+	insmod /usr/lib/modules/6.1.43-current-bigtree-cb2/kernel/drivers/input/touchscreen/tsc2007.ko
 fi
 
 if [ ${tft35} -eq 1 ] && [ ! -e "${FBDEV_CONFIG}" ]; then
